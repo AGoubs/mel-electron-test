@@ -1,6 +1,6 @@
 {
   "build": {
-    "appId": "com.github.messagerie-melanie2.mel-electron",
+    "appId": "com.github.AGoubs.mel-electron-test",
     "extraResources": [
       {
         "from": "template/messagepreview.html",
@@ -29,10 +29,10 @@
     "asar": false
   },
   "name": "Mel",
-  "productName": "Messagerie Mel",
-  "version": "0.7.6",
+  "productName": "Messagerie Mel Test",
+  "version": "0.0.2",
   "description": "Courrielleur nouvelle generation",
-  "homepage": "https://github.com/messagerie-melanie2/mel-electron",
+  "homepage": "https://github.com/AGoubs/mel-electron-test",
   "main": "main.js",
   "scripts": {
     "start": "electron .",

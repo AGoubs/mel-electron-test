@@ -18,8 +18,8 @@ log4js.configure({
 
 logger.info("Démarrage de l'application")
 
-// require('dotenv').config({ path: path.join(process.resourcesPath, '.env') })
-require('dotenv').config()
+require('dotenv').config({ path: path.join(process.resourcesPath, '.env') })
+// require('dotenv').config()
 
 if (!process.env.PATH_ARCHIVE) {
   process.env.PATH_ARCHIVE = path.join(app.getPath("userData"), process.env.ARCHIVE_FOLDER)
@@ -74,8 +74,8 @@ function initialize() {
   }
 
   app.on('ready', () => {
-    autoUpdater.checkForUpdatesAndNotify();
     createWindow()
+    autoUpdater.checkForUpdatesAndNotify();
   })
 
   app.on('window-all-closed', () => {
@@ -94,26 +94,35 @@ function initialize() {
 //--------------------------------------------------------------------------------------------------
 // Auto updates
 //--------------------------------------------------------------------------------------------------
-const sendStatusToWindow = (text) => {
-  if (mainWindow) {
-    mainWindow.webContents.send('message', text);
-  }
-};
 
-autoUpdater.on('checking-for-update', () => {
-  sendStatusToWindow('Recherche de mise à jour...');
-})
-autoUpdater.on('update-available', () => {
-  sendStatusToWindow('Mise à jour disponible');
-})
-autoUpdater.on('update-not-available', () => {
-  sendStatusToWindow('Pas de mise à jour disponible');
-})
-autoUpdater.on('error', err => {
-  sendStatusToWindow(`Erreur de la mise à jour automatique ${err.toString()}`);
+autoUpdater.on('update-available', (info) => {
+  console.log("update available");
+  dialog.showMessageBox(null, {
+    type: 'error',
+    title: 'Erreur',
+    message: "Update available",
+  });
 })
 
+autoUpdater.on('update-not-available', (info) => {
+  console.log("update not available");
 
+  dialog.showMessageBox(null, {
+    type: 'error',
+    title: 'Erreur',
+    message: "Update not available",
+  });
+})
+
+autoUpdater.on('update-downloaded', (info) => {
+  console.log("update downloaded");
+
+  dialog.showMessageBox(null, {
+    type: 'error',
+    title: 'Erreur',
+    message: "Update downloaded",
+  });
+})
 // Require each JS file in the main-process dir
 function loadApp() {
   const files = glob.sync(path.join(__dirname, 'main-process/*.js'))
@@ -128,9 +137,3 @@ function createArchiveFolder() {
 
 initialize()
 createArchiveFolder()
-
-
-//-------Auto-update--------
-autoUpdater.on('update-downloaded', info => {
-  autoUpdater.quitAndInstall();
-})
