@@ -1,0 +1,69 @@
+{
+  "build": {
+    "appId": "com.github.messagerie-melanie2.mel-electron",
+    "extraResources": [
+      {
+        "from": "template/messagepreview.html",
+        "to": "template/messagepreview.html"
+      },
+      {
+        "from": ".env",
+        "to": ".env"
+      }
+    ],
+    "win": {
+      "icon": "icons/mel.ico",
+      "target": "nsis",
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "linux": {
+      "category": "Utility",
+      "icon": "icons/mel.ico",
+      "target": "deb"
+    },
+    "nsis": {
+      "guid": "35bbb552-72ae-4a25-bf3a-9fa83c24105a",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "asar": false
+  },
+  "name": "Mel",
+  "productName": "Messagerie Mel",
+  "version": "0.7.6",
+  "description": "Courrielleur nouvelle generation",
+  "homepage": "https://github.com/messagerie-melanie2/mel-electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps",
+    "dist": "electron-builder",
+    "publish": "electron-builder -p always"
+  },
+  "author": "AGoubs <arnaud.goubier@i-carre.net>",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^9.3.1",
+    "electron-builder": "^22.7.0"
+  },
+  "dependencies": {
+    "app": "^0.1.0",
+    "css": "^3.0.0",
+    "decompress-zip": "^0.2.2",
+    "dotenv": "^8.2.0",
+    "dree": "^2.4.15",
+    "electron-context-menu": "^2.3.0",
+    "electron-db": "^1.0.0",
+    "electron-default-menu": "^1.0.2",
+    "electron-dl": "^3.0.2",
+    "electron-updater": "^4.3.5",
+    "envfile": "^2.1.1",
+    "glob": "^7.1.6",
+    "jquery": "^3.5.0",
+    "log4js": "^6.3.0",
+    "mailparser": "^2.8.1",
+    "sqlite3": "^5.0.0",
+    "underscore": "^1.10.2",
+    "utf7": "^1.0.2"
+  }
+}
