@@ -1,2 +1,2 @@
-# mel-electron
-Client Electron pour Mél
+# mel-electron-test
+Client Electron de test pour Mél
